@@ -64,7 +64,7 @@ function go(){
 
 function getCommits() {
 	
-        console.log("BEGIN");
+        console.log("getCommits");
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', 'https://rust.facepunch.com/commits/', true);
 		
@@ -103,8 +103,8 @@ function getCommits() {
 	
 }
 
-chrome.browserAction.setBadgeBackgroundColor({ color: '#FF0000' });
-chrome.browserAction.setBadgeText({ text: '!' });
+//chrome.browserAction.setBadgeBackgroundColor({ color: '#FF0000' });
+//chrome.browserAction.setBadgeText({ text: '!' });
 chrome.browserAction.onClicked.addListener(openWarningPage);
 chrome.notifications.onClicked.addListener(openWarningPage);
 chrome.notifications.onButtonClicked.addListener(openWarningPage);
