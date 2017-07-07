@@ -57,7 +57,7 @@ function go(){
 	interval(function(){
 		
 		getCommits();
-	}, 3000, 9999);
+	}, 30000, 9999);
 
 }
 
