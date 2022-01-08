@@ -91,32 +91,6 @@ function getCommits() {
 			});
 
 
-
-			
-
-
-			/*
-			if (totalCommits < allCommits.length){
-				//update totalCommits for the new value
-				totalCommits = allCommits.length;
-
-				//get last commit
-				var lastCommitHTML = allCommits[0].innerHTML;
-				var tempDom2 = $('<lastout>').append($.parseHTML(lastCommitHTML));
-				var lastCommit = $('.time', tempDom2);
-				var lastCommitTxt = $('.commits-message', tempDom2);
-				
-				var author = lastCommit[0].innerText.toString();
-				var svn = lastCommit[1].innerText.toString();
-				//var dt = lastCommit[1].innerText.toString();
-				var txt = lastCommitTxt[0].innerText.toString();
-				
-				showWarning(author,svn,txt);
-				
-			}else{
-				//no new commits
-			}
-			*/
 		};
 		
 		xhr.send();
