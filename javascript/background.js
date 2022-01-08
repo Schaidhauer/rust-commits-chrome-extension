@@ -46,7 +46,7 @@ function interval(func, wait, times){
     setTimeout(interv, wait);
 };
 
-var totalCommits = 0;
+var lastCommitId = '';
 
 function go(){
 
@@ -57,7 +57,7 @@ function go(){
 	interval(function(){
 		
 		getCommits();
-	}, 30000, 9999);
+	}, 300000, 9999);
 
 }
 
@@ -69,15 +69,31 @@ function getCommits() {
 		xhr.open('GET', 'https://commits.facepunch.com/r/rust_reboot', true);
 		
 		xhr.onload = function(e) {
-			//for debug/test
-			//totalCommits = totalCommits -1;
 			
 			var tempDom = $('<output>').append($.parseHTML(this.response));
-			var allCommits = $('.commit', tempDom);
+			console.log(tempDom[0]);
 
-			//pega o primeiro e ve o like-id
-			var commitid = $(this).attr('like-id');
-			console.log("commitid: "+commitid);
+			$( ".commit",tempDom).each(function() {
+				var commitId = $( this ).attr('like-id');
+				var commmitText = $( this ).children().last().children().eq(1).children().text();
+				var commmitAuthor = $( this ).children().find('.author').children().last().text();
+				var commmitAvatar = $( this ).children().find('.author').children().first().children().text();
+
+
+				if (commitId != lastCommitId)
+				{
+					//update last commitId
+					lastCommitId = commitId;
+					showWarning(commmitAuthor,commmitAvatar,commmitText);
+				}
+
+
+				return false;
+			});
+
+
+
+			
 
 
 			/*
