@@ -15,7 +15,7 @@
   },
   "permissions": [
     "notifications",
-	"https://rust.facepunch.com/commits/"
+	"https://commits.facepunch.com/r/rust_reboot"
   ],
   "browser_action": {
     "default_icon": {
