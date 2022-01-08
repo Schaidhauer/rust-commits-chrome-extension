@@ -22,7 +22,7 @@ function showWarning(author,svn,txt) {
 
 function openWarningPage() {
   chrome.tabs.create({
-    url: 'https://rust.facepunch.com/commits/'
+    url: 'https://commits.facepunch.com/r/rust_reboot'
   });
 }
 
@@ -66,14 +66,21 @@ function getCommits() {
 	
         console.log("getCommits");
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', 'https://rust.facepunch.com/commits/', true);
+		xhr.open('GET', 'https://commits.facepunch.com/r/rust_reboot', true);
 		
 		xhr.onload = function(e) {
 			//for debug/test
 			//totalCommits = totalCommits -1;
 			
 			var tempDom = $('<output>').append($.parseHTML(this.response));
-			var allCommits = $('.media', tempDom);
+			var allCommits = $('.commit', tempDom);
+
+			//pega o primeiro e ve o like-id
+			var commitid = $(this).attr('like-id');
+			console.log("commitid: "+commitid);
+
+
+			/*
 			if (totalCommits < allCommits.length){
 				//update totalCommits for the new value
 				totalCommits = allCommits.length;
@@ -81,8 +88,8 @@ function getCommits() {
 				//get last commit
 				var lastCommitHTML = allCommits[0].innerHTML;
 				var tempDom2 = $('<lastout>').append($.parseHTML(lastCommitHTML));
-				var lastCommit = $('small', tempDom2);
-				var lastCommitTxt = $('.pre', tempDom2);
+				var lastCommit = $('.time', tempDom2);
+				var lastCommitTxt = $('.commits-message', tempDom2);
 				
 				var author = lastCommit[0].innerText.toString();
 				var svn = lastCommit[1].innerText.toString();
@@ -94,7 +101,7 @@ function getCommits() {
 			}else{
 				//no new commits
 			}
-			
+			*/
 		};
 		
 		xhr.send();
