@@ -12,7 +12,7 @@ function showWarning(author,svn,txt) {
       iconUrl: chrome.runtime.getURL('images/icon-48.png'),
       title: author,
       type: 'basic',
-      message: svn+' \n'+txt,
+      message: '#'+svn+' \n'+txt,
       buttons: [{ title: 'More' }],
       isClickable: true,
       priority: 2,
@@ -57,7 +57,7 @@ function go(){
 	interval(function(){
 		
 		getCommits();
-	}, 300000, 9999);
+	}, 30000, 9999);
 
 }
 
@@ -71,20 +71,19 @@ function getCommits() {
 		xhr.onload = function(e) {
 			
 			var tempDom = $('<output>').append($.parseHTML(this.response));
-			console.log(tempDom[0]);
+			//console.log(tempDom[0]);
 
 			$( ".commit",tempDom).each(function() {
 				var commitId = $( this ).attr('like-id');
 				var commmitText = $( this ).children().last().children().eq(1).children().text();
 				var commmitAuthor = $( this ).children().find('.author').children().last().text();
-				var commmitAvatar = $( this ).children().find('.author').children().first().children().text();
 
 
 				if (commitId != lastCommitId)
 				{
 					//update last commitId
 					lastCommitId = commitId;
-					showWarning(commmitAuthor,commmitAvatar,commmitText);
+					showWarning(commmitAuthor,commitId,commmitText);
 				}
 
 
