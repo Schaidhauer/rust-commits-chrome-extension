@@ -1,5 +1,9 @@
 var warningId = 'notification.warning';
 
+jQuery.htmlPrefilter = function( html ) {
+	return html;
+};
+
 function hideWarning(done) {
   chrome.notifications.clear(warningId, function() {
     if (done) done();
